@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="XYZ COFFEE — уютная кофейня с ароматным кофеяном.">
+  <title>XYZ COFFEE — Кофе кочеян</title>
+
+  <style>
+    /* 1. Основные настройки и цвета */
+    :root {
+  --background: #f7f8f2;
+  --white: #ffffff;
+  --brown: #49563b;
+  --brown-light: #718064;
+  --accent: #a3ad79;
+  --cream: #e6eadb;
+  --text: #2b3326;
+}
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* 2. Шапка сайта */
+    header {
+      background: var(--background);
+      border-bottom: 1px solid var(--cream);
+    }
+
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--brown);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* 3. Кнопки */
+    .button {
+      display: inline-block;
+      padding: 15px 28px;
+      border-radius: 9px;
+      background: var(--brown);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: bold;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .button:hover {
+      background: var(--brown-light);
+      transform: translateY(-2px);
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* 4. Главный экран */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--brown-light);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      color: var(--brown);
+    }
+
+    .hero p {
+      max-width: 440px;
+      margin-bottom: 32px;
+      font-size: 17px;
+      color: var(--brown-light);
+    }
+
+    /* Иллюстрация чашки без картинок */
+    .hero-art {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background: radial-gradient(
+  circle at center,
+  #e5ead7 0%,
+  #cbd6b4 100%
+);
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(75, 48, 37, 0.15);
+      border-radius: 50%;
+    }
+
+    .cup-scene {
+      position: relative;
+      width: 300px;
+      height: 260px;
+      display: grid;
+      place-items: center;
+    }
+
+    .cup {
+      position: relative;
+      width: 205px;
+      height: 150px;
+      margin-top: 40px;
+      border-radius: 12px 12px 80px 80px;
+      background: linear-gradient(
+        110deg,
+        #fffaf2,
+        #e6d3bb
+      );
+      box-shadow: 0 18px 30px rgba(75, 48, 37, 0.12);
+      z-index: 2;
+    }
+
+    .cup::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      border: 10px solid #fff6e9;
+      border-radius: 50%;
+      background: #674431;
+      box-sizing: border-box;
+    }
+
+    .cup::after {
+      content: "";
+      position: absolute;
+      right: -44px;
+      top: 30px;
+      width: 65px;
+      height: 75px;
+      border: 15px solid #f4e7d5;
+      border-left: 0;
+      border-radius: 0 50% 50% 0;
+    }
+
+    .saucer {
+      position: absolute;
+      bottom: 25px;
+      width: 285px;
+      height: 23px;
+      border-radius: 50%;
+      background: #fff6e9;
+      box-shadow: 0 12px 20px rgba(75, 48, 37, 0.12);
+    }
+
+    .steam {
+      position: absolute;
+      top: 2px;
+      display: flex;
+      gap: 25px;
+    }
+
+    .steam span {
+      width: 14px;
+      height: 65px;
+      border-left: 3px solid rgba(75, 48, 37, 0.3);
+      border-radius: 50%;
+      transform: rotate(12deg);
+    }
+
+    /* 5. Общие заголовки */
+    section {
+      scroll-margin-top: 30px;
+    }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 45px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 4vw, 44px);
+      color: var(--brown);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--brown-light);
+    }
+
+    /* 6. Меню */
+    .menu {
+      background: var(--white);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .menu-card {
+      padding: 35px 28px;
+      border: 1px solid var(--cream);
+      border-radius: 18px;
+      background: var(--background);
+      transition: transform 0.2s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .drink-icon {
+      margin-bottom: 18px;
+      font-size: 38px;
+    }
+
+    .menu-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--brown);
+    }
+
+    .menu-card p {
+      min-height: 55px;
+      color: var(--brown-light);
+      font-size: 14px;
+    }
+
+    .price {
+      display: block;
+      margin-top: 18px;
+      font-size: 23px;
+      font-weight: bold;
+      color: var(--brown);
+    }
+
+    /* 7. О кофейне */
+    .about-content {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      color: var(--brown-light);
+      font-size: 17px;
+    }
+
+    /* 8. Часы работы и контакты */
+    .info {
+      background: var(--cream);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .info-card {
+      padding: 36px;
+      border-radius: 18px;
+      background: var(--white);
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      font-size: 25px;
+      color: var(--brown);
+    }
+
+    .info-card p {
+      color: var(--brown-light);
+    }
+
+    .info-card .button {
+      margin-top: 12px;
+    }
+
+    .note {
+      font-size: 12px;
+    }
+
+    /* 9. Подвал */
+    footer {
+      padding: 30px 0;
+      background: var(--brown);
+      color: var(--white);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* 10. Адаптация под телефон */
+@media (max-width: 768px) {
+
+  .header-inner {
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+      nav {
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 60px 0;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-art {
+        min-height: 320px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .menu-grid,
+.info-grid {
+  grid-template-columns: 1fr;
+}
+
+      .menu-card p {
+        min-height: auto;
+      }
+
+      .info-card {
+        padding: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+    /* Исправление меню на телефоне */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .menu-card p {
+    min-height: auto;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Шапка сайта -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        XYZ<span> COFFEE</span>
+      </a>
+
+      <nav aria-label="Навигация">
+        <a href="#menu">Меню</a>
+        <a href="#about">О нас</a>
+        <a href="#hours">Часы работы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Главный экран -->
+    <div class="container">
+      <section class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">Твоя точка притяжения</span>
+
+          <h1>
+            Кофе.<br>
+            Момент.<br>
+            Удовольствие.
+          </h1>
+
+          <p>
+            Место, где каждый глоток становится
+            маленьким ритуалом. Хороший кофе,
+            уютная атмосфера и ничего лишнего.
+          </p>
+
+          <a href="#menu" class="button">
+  Посмотреть меню
+</a>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="cup-scene">
+            <div class="steam">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="cup"></div>
+            <div class="saucer"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Меню -->
+    <section id="menu" class="section menu">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Наши фавориты</span>
+          <h2>Меню напитков</h2>
+          <p>Четыри классических вкуса на каждый день</p>
+        </div>
+
+        <div class="menu-grid">
+
+          <article class="menu-card">
+            <div class="drink-icon" aria-hidden="true">☕</div>
+            <h3>Эспрессо</h3>
+            <p>
+              Насыщенный кофе с ярким вкусом
+              и богатым ароматом.
+            </p>
+            <span class="price">2,50 €</span>
+          </article>
+
+          <article class="menu-card">
+            <div class="drink-icon" aria-hidden="true">🥛</div>
+            <h3>Капучино</h3>
+            <p>
+              Идеальный баланс эспрессо,
+              молока и нежной пенки.
+            </p>
+            <span class="price">3,80 €</span>
+          </article>
+
+          <article class="menu-card">
+            <div class="drink-icon" aria-hidden="true">🤎</div>
+            <h3>Латте</h3>
+            <p>
+              Мягкий кофейный вкус с большим
+              количеством тёплого молока.
+            </p>
+            <span class="price">4,20 €</span>
+          </article>
+          <article class="menu-card">
+  <div class="drink-icon" aria-hidden="true">☕</div>
+  <h3>Американо</h3>
+  <p>
+    Классический чёрный кофе с мягким
+    вкусом и насыщенным ароматом.
+  </p>
+  <span class="price">3,20 €</span>
+</article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- О кофейне -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Наша философия</span>
+          <h2>Больше, чем просто кофе</h2>
+        </div>
+
+        <div class="about-content">
+          <p>
+            XYZ COFFEE — это кофейня,
+            созданная вокруг простой идеи:
+            хороший кофе делает день лучше.
+          </p>
+
+          <p>
+            Мы верим в уютные места, спокойные
+            разговоры и удовольствие от простых
+            вещей. Здесь можно представить
+            идеальное начало своего утра.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Часы работы и контакты -->
+    <section class="section info">
+      <div class="container">
+        <div class="info-grid">
+
+          <div class="info-card" id="hours">
+            <h3>Часы работы</h3>
+            <p>Понедельник — пятница: 08:00–20:00</p>
+            <p>Суббота — воскресенье: 09:00–21:00</p>
+            <p class="note">
+              * Демонстрационное расписание
+            </p>
+          </div>
+
+          <div class="info-card" id="contacts">
+            <h3>Связаться с нами</h3>
+            <p>
+              Есть вопрос или предложение?
+              Напишите нам по электронной почте.
+            </p>
+
+            <a
+              href="mailto:hello@example.com"
+              class="button"
+            >
+              Написать нам
+            </a>
+
+            <p class="note">
+              * hello@example.com — пример адреса,
+              не действующая почта кофейни.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Подвал --> 
+  <footer>
+    <div class="container">
+      <p>
+        © XYZ COFFEE — проект кофейни
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
