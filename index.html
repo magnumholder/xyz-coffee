@@ -10,14 +10,14 @@
   <style>
     /* 1. Основные настройки и цвета */
     :root {
-  --background: #f7f8f2;
-  --white: #ffffff;
-  --brown: #49563b;
-  --brown-light: #718064;
-  --accent: #a3ad79;
-  --cream: #e6eadb;
-  --text: #2b3326;
-}
+      --background: #f7f8f2;
+      --white: #ffffff;
+      --brown: #49563b;
+      --brown-light: #718064;
+      --accent: #a3ad79;
+      --cream: #e6eadb;
+      --text: #2b3326;
+    }
 
     * {
       box-sizing: border-box;
@@ -151,10 +151,10 @@
       overflow: hidden;
       border-radius: 30px;
       background: radial-gradient(
-  circle at center,
-  #e5ead7 0%,
-  #cbd6b4 100%
-);
+        circle at center,
+        #e5ead7 0%,
+        #cbd6b4 100%
+      );
     }
 
     .hero-art::before {
@@ -276,6 +276,7 @@
     }
 
     .menu-card {
+      min-width: 0;
       padding: 35px 28px;
       border: 1px solid var(--cream);
       border-radius: 18px;
@@ -372,23 +373,20 @@
       margin: 0;
     }
 
-    /* 10. Адаптация под телефон */
-@media (max-width: 768px) {
+    /* 10. Планшет: по две карточки в ряд */
+    @media (max-width: 1100px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
 
-  .header-inner {
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px 0;
-  }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-card {
-    width: 100%;
-    min-width: 0;
-  }
+    /* 11. Телефон: по одной карточке в ряд */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 0;
+      }
 
       nav {
         justify-content: center;
@@ -414,9 +412,9 @@
       }
 
       .menu-grid,
-.info-grid {
-  grid-template-columns: 1fr;
-}
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
       .menu-card p {
         min-height: auto;
@@ -427,6 +425,7 @@
       }
     }
 
+    /* 12. Учитываем предпочтение пользователя: без анимаций */
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -436,21 +435,6 @@
         transition: none !important;
       }
     }
-    /* Исправление меню на телефоне */
-@media (max-width: 768px) {
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-card {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .menu-card p {
-    min-height: auto;
-  }
-}
   </style>
 </head>
 
@@ -493,8 +477,8 @@
           </p>
 
           <a href="#menu" class="button">
-  Посмотреть меню
-</a>
+            Посмотреть меню
+          </a>
         </div>
 
         <div class="hero-art" aria-hidden="true">
@@ -517,7 +501,7 @@
         <div class="section-heading">
           <span class="eyebrow">Наши фавориты</span>
           <h2>Меню напитков</h2>
-          <p>Четыри классических вкуса на каждый день</p>
+          <p>Четыре классических вкуса на каждый день</p>
         </div>
 
         <div class="menu-grid">
@@ -551,15 +535,16 @@
             </p>
             <span class="price">4,20 €</span>
           </article>
+
           <article class="menu-card">
-  <div class="drink-icon" aria-hidden="true">☕</div>
-  <h3>Американо</h3>
-  <p>
-    Классический чёрный кофе с мягким
-    вкусом и насыщенным ароматом.
-  </p>
-  <span class="price">3,20 €</span>
-</article>
+            <div class="drink-icon" aria-hidden="true">☕</div>
+            <h3>Американо</h3>
+            <p>
+              Классический чёрный кофе с мягким
+              вкусом и насыщенным ароматом.
+            </p>
+            <span class="price">3,20 €</span>
+          </article>
 
         </div>
       </div>
@@ -620,7 +605,7 @@
 
             <p class="note">
               * hello@example.com — пример адреса,
-              не действующая почта кофейни.
+              недействующая почта кофейни.
             </p>
           </div>
 
@@ -630,7 +615,7 @@
 
   </main>
 
-  <!-- Подвал --> 
+  <!-- Подвал -->
   <footer>
     <div class="container">
       <p>
